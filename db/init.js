@@ -3,8 +3,6 @@ const { Client } = require("pg");
 const fs = require("node:fs");
 const path = require("node:path");
 
-
-
 async function main() {
     console.log("seeding...");
     const client = new Client({
