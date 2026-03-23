@@ -16,6 +16,10 @@ app.get("/", (req, res) => res.send("Members Only"));
 
 
 
+app.use((err, req, res, next) => {
+    console.error(err);
+    res.status(err.statusCode || 500).send(err.message);
+});
 
 app.listen(PORT, (err) => {
     if (err) {
