@@ -5,7 +5,7 @@ const path = require("node:path");
 const PORT = process.env.PORT;
 
 app.set("views", path.join(__dirname, "views"));
-app.set("views engine", "ejs");
+app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
 
