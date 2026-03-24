@@ -16,5 +16,5 @@ async function updateMembershipStatus(id) {
 module.exports = {
     insertUser,
     updateMembershipStatus,
-    getUser,
+    getUserByEmail,
 }
