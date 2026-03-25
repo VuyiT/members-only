@@ -5,16 +5,16 @@ async function insertUser(firstName, lastName, emailAddress, password) {
 }
 
 async function getUserByEmail(email) {
-    const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [email]);
+    const { rows } = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
     return rows[0];
 }
 
-async function updateMembershipStatus(id) {
-    await pool.query("UPDATE users SET membership_status = TRUE WHERE id = $1", [id]);
+async function updateMembershipStatusByEmail(email) {
+    await pool.query("UPDATE users SET membership_status = TRUE WHERE email = $1", [email]);
 }
 
 module.exports = {
     insertUser,
-    updateMembershipStatus,
+    updateMembershipStatusByEmail,
     getUserByEmail,
 }
