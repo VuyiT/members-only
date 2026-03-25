@@ -1,4 +1,5 @@
 const passport = require("passport");
+const bcrypt = require("bcryptjs");
 const LocalStrategy = require("passport-local").Strategy;
 const db = require("../db/queries");
 
@@ -13,7 +14,10 @@ const verifyCallback = async (email, password, done) => {
         if (!user) {
             return done(null, false, { message: "Incorrect email address" });
         }
-        if (user.password !== password) {
+        const match = await bcrypt.compare(password, user.password_hash);
+        console.log(await bcrypt.hash(password, 10));
+        console.log("Do they match: ", match)
+        if (!match) {
             return done(null, false, { message: "Incorrect password" });
         }
         return done(null, user);
