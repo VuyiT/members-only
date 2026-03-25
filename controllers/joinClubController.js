@@ -26,7 +26,7 @@ const joinClubPost = [
         try {
             const { email } = matchedData(req);
             await db.updateMembershipStatusByEmail(email);
-            res.redirect("/");
+            res.redirect("/log-in");
         } catch (err) {
             next(err);
         }
