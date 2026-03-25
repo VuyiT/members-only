@@ -1,7 +1,7 @@
 const db = require("../db/queries");
 const { CustomFailedToLoadError } = require("../errors/CustomErrors");
 const { validationResult, matchedData } = require("express-validator");
-const { validateUser } = require("../lib/validator");
+const { validateUser } = require("../lib/userValidation");
 const bcrypt = require("bcryptjs");
 
 async function getSignUp(req, res) {
@@ -28,7 +28,7 @@ const createUserPost = [
             const { firstName, lastName, email, password } = matchedData(req);
             const hashedPassword = await bcrypt.hash(password, 10);
             await db.insertUser(firstName, lastName, email, hashedPassword);
-            res.redirect("/");
+            res.redirect("/join-club");
         } catch (err) {
             next(err);
         }
