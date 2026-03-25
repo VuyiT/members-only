@@ -6,6 +6,7 @@ const app = express();
 const path = require("node:path");
 const signUpRouter = require("./routes/signUpRouter");
 const joinClubRouter = require("./routes/joinClubRouter");
+const loginRouter = require("./routes/loginRouter");
 require("./config/passport");
 const PORT = process.env.PORT;
 
@@ -23,6 +24,7 @@ app.use(session({
 app.use(passport.session());
 app.use(express.urlencoded({ extended: true }));
 
+app.use("/log-in", loginRouter);
 app.use("/join-club", joinClubRouter);
 app.use("/sign-up", signUpRouter);
 app.get("/", (req, res) => res.send("Members Only"));
