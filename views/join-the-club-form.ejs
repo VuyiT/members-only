@@ -3,8 +3,11 @@
     <%- include("./partials/head.ejs") %>
 <body>
     <h1><%= title %></h1>
+    <%- include("./partials/joinClubValidationErrors") %>
     <h2>Enter the secret passcode to join the club</h2>
-    <form action="/join" method="POST">
+    <form action="/join-club" method="POST">
+        <label for="email">Email: </label>
+        <input type="email" name="email" id="email" required>
         <label for="passcode">Secret Passcode: </label>
         <input type="password" id="passcode" name="passcode" required>
         <button type="submit">Join</button>
