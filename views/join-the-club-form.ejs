@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("./partials/head.ejs") %>
+<body>
+    <h1><%= title %></h1>
+    <h2>Enter the secret passcode to join the club</h2>
+    <form action="/join" method="POST">
+        <label for="passcode">Secret Passcode: </label>
+        <input type="password" id="passcode" name="passcode" required>
+        <button type="submit">Join</button>
+    </form>
+</body>
+</html>
