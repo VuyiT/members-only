@@ -1,4 +1,5 @@
 const db = require("../db/queries");
+const { CustomFailedToLoadError } = require("../errors/CustomErrors");
 
 async function getJoinForm(req, res) {
     try {
@@ -6,7 +7,7 @@ async function getJoinForm(req, res) {
             title: "Join The Club",
         })
     } catch(err) {
-        throw new CustomFailedToLoad("Join The Club Form failed to load.");
+        throw new CustomFailedToLoadError("Join The Club page failed to load.");
     }
 }
 
