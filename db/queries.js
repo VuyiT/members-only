@@ -27,8 +27,8 @@ async function getAllMessages() {
     return rows;
 }
 
-async function getAllMessagesByUsers() {
-    const { rows } = await pool.query('SELECT * FROM users INNER JOIN messages ON (users.id = messages.user_id)');
+async function getAllMessagesByMembers() {
+    const { rows } = await pool.query('SELECT * FROM users INNER JOIN messages ON (users.id = messages.user_id) WHERE users.membership_status = TRUE');
     return rows;
 }
 
@@ -40,5 +40,5 @@ module.exports = {
     getUserByEmail,
     insertMessage,
     getAllMessages,
-    getAllMessagesByUsers,
+    getAllMessagesByMembers,
 }
