@@ -6,7 +6,7 @@ require("../config/passport");
 
 loginRouter.get("/", loginController.getLogin);
 loginRouter.post("/", passport.authenticate("local", {
-    successRedirect: "/",
+    successRedirect: "/log-in",
     failureRedirect: "/log-in",
 })
 );
