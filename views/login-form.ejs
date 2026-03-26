@@ -2,13 +2,19 @@
 <html lang="en">
     <%- include("./partials/head.ejs") %>
 <body>
-    <h1><%= title %></h1>
-    <form action="/log-in" method="POST">
-        <label for="email">Email Address: </label>
-        <input type="email" id="email" name="email" required>
-        <label for="password">Password: </label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit">Log In</button>
-    </form>
+    <% if (currentUser) { %>
+        <h1>Welcome Back <%= currentUser.first_name %></h1>
+        <a href="/create-message"><button>Create New Message</button></a>
+        <a href="/log-out"><button>Log Out</button></a>
+    <% } else { %>    
+        <h1><%= title %></h1>
+        <form action="/log-in" method="POST">
+            <label for="email">Email Address: </label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Password: </label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Log In</button>
+        </form>
+    <% } %>
 </body>
 </html>
