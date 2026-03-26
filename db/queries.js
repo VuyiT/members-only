@@ -27,6 +27,12 @@ async function getAllMessages() {
     return rows;
 }
 
+async function getAllMessagesByUsers() {
+    const { rows } = await pool.query('SELECT * FROM users INNER JOIN messages ON (users.id = messages.user_id)');
+    return rows;
+}
+
+
 module.exports = {
     insertUser,
     updateMembershipStatusByEmail,
@@ -34,4 +40,5 @@ module.exports = {
     getUserByEmail,
     insertMessage,
     getAllMessages,
+    getAllMessagesByUsers,
 }
