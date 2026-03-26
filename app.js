@@ -24,6 +24,11 @@ app.use(session({
 app.use(passport.session());
 app.use(express.urlencoded({ extended: true }));
 
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user;
+    next();
+});
+
 app.use("/log-in", loginRouter);
 app.use("/join-club", joinClubRouter);
 app.use("/sign-up", signUpRouter);
