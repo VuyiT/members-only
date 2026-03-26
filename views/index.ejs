@@ -3,8 +3,8 @@
     <%- include("./partials/head.ejs") %>
 <body>
     <h1>Welcome To Members Only Club</h1>
-    <% const member = currentUser.membership_status === true %>
     <% if (currentUser) { %>
+         <% const member = currentUser.membership_status === true %>
         <nav>
             <ul>
                 <% if (!member) { %>
@@ -27,9 +27,12 @@
             <% messages.forEach(message => { %>
                 <li>
                     <p><b><%= message.title%></b></p>
-                    <% if (currentUser && member) { %>
-                        <p><b>Author: </b><%= message.first_name + " " + message.last_name %></p>
-                        <p><b>Created At: </b><%= message.created_at %></p> 
+                    <% if (currentUser) { %>
+                        <% const member = currentUser.membership_status === true %>
+                        <% if (member) { %>
+                            <p><b>Author: </b><%= message.first_name + " " + message.last_name %></p>
+                            <p><b>Created At: </b><%= message.created_at %></p> 
+                        <% } %>
                     <% } %>
                     <p><%= message.message_text%></p>
                 </li>
