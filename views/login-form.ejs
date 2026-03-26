@@ -5,6 +5,7 @@
     <% if (currentUser) { %>
         <h1>Welcome Back <%= currentUser.first_name %></h1>
         <a href="/new-message"><button>Create New Message</button></a>
+        <a href="/"><button>See Member Messages</button></a>
         <a href="/log-out"><button>Log Out</button></a>
     <% } else { %>    
         <h1><%= title %></h1>
