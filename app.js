@@ -7,6 +7,7 @@ const path = require("node:path");
 const signUpRouter = require("./routes/signUpRouter");
 const joinClubRouter = require("./routes/joinClubRouter");
 const loginRouter = require("./routes/loginRouter");
+const logoutRouter = require("./routes/logoutRouter");
 require("./config/passport");
 const PORT = process.env.PORT;
 
@@ -29,6 +30,7 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use("/log-out", logoutRouter);
 app.use("/log-in", loginRouter);
 app.use("/join-club", joinClubRouter);
 app.use("/sign-up", signUpRouter);
