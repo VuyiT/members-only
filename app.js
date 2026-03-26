@@ -9,6 +9,7 @@ const joinClubRouter = require("./routes/joinClubRouter");
 const loginRouter = require("./routes/loginRouter");
 const logoutRouter = require("./routes/logoutRouter");
 const messageRouter = require("./routes/messageRouter");
+const indexRouter = require("./routes/indexRouter");
 require("./config/passport");
 const PORT = process.env.PORT;
 
@@ -37,7 +38,7 @@ app.use("/log-out", logoutRouter);
 app.use("/log-in", loginRouter);
 app.use("/join-club", joinClubRouter);
 app.use("/sign-up", signUpRouter);
-app.get("/", (req, res) => res.send("Members Only"));
+app.get("/", indexRouter);
 
 
 
