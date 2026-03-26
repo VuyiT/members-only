@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("./partials/head.ejs") %>
+<body>
+    <h1>Welcome To Members Only Club</h1>
+    <nav>
+        <ul>
+            <li><a href="/sign-up">Sign Up</a> to join the club!</li> 
+            <li>Already a member? <a href="/log-in">Log In</a> to see author names and message creation dates.</li>
+        </ul>
+    </nav>
+    <h2><%= title %></h2>
+    <% if (locals.messages) { %>
+        <ol>
+            <% messages.forEach(message => { %>
+                <li>
+                    <p><b><%= message.title%></b></p>
+                    <% if (currentUser) { %>
+                        <p><b>Author: </b><%= message.first_name + " " + message.last_name %></p>
+                        <p><b>Created At: </b><%= message.created_at %></p> 
+                    <% } %>
+                    <p><%= message.message_text%></p>
+                </li>
+            <% }); %>
+        </ol>
+    <% } %>
+</body>
+</html>
