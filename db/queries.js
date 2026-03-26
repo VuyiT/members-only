@@ -18,9 +18,14 @@ async function updateMembershipStatusByEmail(email) {
     await pool.query("UPDATE users SET membership_status = TRUE WHERE email_address = $1", [email]);
 }
 
+async function insertMessage(userId, title, text) {
+    await pool.query('INSERT INTO messages (user_id, title, message_text) VALUES ($1, $2, $3)', [userId, title, text]);
+}
+
 module.exports = {
     insertUser,
     updateMembershipStatusByEmail,
     getUserById,
     getUserByEmail,
+    insertMessage,
 }
