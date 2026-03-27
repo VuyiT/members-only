@@ -2,7 +2,7 @@ const db = require("../db/queries");
 const { CustomNotFoundError } = require("../errors/CustomErrors");
 
 async function getMessages(req, res) {
-    const messages = await db.getAllMessagesByMembers();
+    const messages = await db.getAllMessages();
     if (!messages) {
         throw new CustomNotFoundError("Messages not found");
     }
