@@ -23,12 +23,20 @@ async function insertMessage(userId, title, text) {
 }
 
 async function getAllMessages() {
-    const { rows } = await pool.query('SELECT * FROM messages');
-    return rows;
-}
-
-async function getAllMessagesByMembers() {
-    const { rows } = await pool.query('SELECT * FROM users INNER JOIN messages ON (users.id = messages.user_id) WHERE users.membership_status = TRUE');
+    const { rows } = await pool.query(`
+        SELECT 
+        messages.*,
+        json_build_object(
+        'id', users.id,
+        'firstName', users.first_name,
+        'lastName', users.last_name,
+        'fullName', users.first_name || ' ' || users.last_name,
+        'isMember', users.membership_status
+           ) AS author
+            FROM messages
+            JOIN users ON (users.id = messages.user_id) 
+            ORDER BY messages.created_at DESC;
+            `);
     return rows;
 }
 
@@ -40,5 +48,4 @@ module.exports = {
     getUserByEmail,
     insertMessage,
     getAllMessages,
-    getAllMessagesByMembers,
 }
