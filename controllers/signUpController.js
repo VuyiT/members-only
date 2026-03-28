@@ -25,9 +25,9 @@ const createUserPost = [
             });
         }
         try {
-            const { firstName, lastName, email, password } = matchedData(req);
+            const { firstName, lastName, email, password, isAdmin } = matchedData(req);
             const hashedPassword = await bcrypt.hash(password, 10);
-            await db.insertUser(firstName, lastName, email, hashedPassword);
+            await db.insertUser(firstName, lastName, email, hashedPassword, isAdmin);
             res.redirect("/join-club");
         } catch (err) {
             next(err);
