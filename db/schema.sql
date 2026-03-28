@@ -8,7 +8,7 @@ CREATE TABLE users (
     email_address VARCHAR ( 255 ) UNIQUE NOT NULL,
     password_hash VARCHAR ( 255 ),
     membership_status BOOLEAN NOT NULL DEFAULT FALSE,
-    admin_status BOOLEAN NOT NULL DEFAULT FALSE
+    admin_status BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE messages (
