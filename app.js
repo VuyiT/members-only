@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
     res.locals.currentUser = req.user || null;
     res.locals.isMember = req.user ? req.user.membership_status === true : false;
-    res.locals.isAdmin === req.user && req.user.membership_status === true ? req.user.admin_status === true : false;
+    res.locals.isAdmin = req.user && req.user.membership_status === true ? req.user.admin_status === true : false;
     next();
 });
 
