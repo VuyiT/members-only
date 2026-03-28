@@ -40,7 +40,7 @@ app.use("/log-out", logoutRouter);
 app.use("/log-in", loginRouter);
 app.use("/join-club", joinClubRouter);
 app.use("/sign-up", signUpRouter);
-app.get("/", indexRouter);
+app.use("/", indexRouter);
 
 
 
