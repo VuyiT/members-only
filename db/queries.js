@@ -25,6 +25,11 @@ async function insertMessage(userId, title, text) {
 async function getAllMessages() {
     const { rows } = await pool.query(`
         SELECT 
+        messages.id,
+        messages.user_id,
+        messages.title,
+        messages.message_text,
+        to_char(messages.created_at, 'YYYY-MM-DD at HH24:MI') AS formatted_date,
         messages.*,
         json_build_object(
         'id', users.id,
