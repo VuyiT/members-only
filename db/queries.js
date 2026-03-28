@@ -1,7 +1,7 @@
 const pool = require("./pool");
 
-async function insertUser(firstName, lastName, emailAddress, password) {
-    await pool.query('INSERT INTO users (first_name, last_name, email_address, password_hash) VALUES ($1, $2, $3, $4)', [firstName, lastName, emailAddress, password]);
+async function insertUser(firstName, lastName, emailAddress, password, isAdmin) {
+    await pool.query('INSERT INTO users (first_name, last_name, email_address, password_hash, admin_status) VALUES ($1, $2, $3, $4, $5)', [firstName, lastName, emailAddress, password, isAdmin]);
 }
 
 async function getUserById(id) {
@@ -36,7 +36,8 @@ async function getAllMessages() {
         'firstName', users.first_name,
         'lastName', users.last_name,
         'fullName', users.first_name || ' ' || users.last_name,
-        'isMember', users.membership_status
+        'isMember', users.membership_status,
+        'isAdmin', users.admin_status
            ) AS author
             FROM messages
             JOIN users ON (users.id = messages.user_id) 
