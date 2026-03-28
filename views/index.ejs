@@ -24,8 +24,8 @@
                 <li>
                     <p><b><%= message.title%></b></p>
                     <% if (isMember) { %>
-                        <p><b>Author: </b><%= message.author.fullName %> </p>
-                        <p><b>Created At: </b><%= message.created_at %></p> 
+                        <p><b>By: </b><%= message.author.fullName %> </p>
+                        <p><b>Posted On: </b><%= message.formatted_date %></p> 
                     <% } %>
                     <p><%= message.message_text%></p>
                 </li>
