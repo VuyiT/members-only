@@ -12,6 +12,16 @@ async function getMessages(req, res) {
     });
 }
 
+async function deleteMessage(req, res, next) {
+    try {
+         await db.deleteMessageById(req.params.messageId);
+        res.redirect("/");
+    } catch (err) {
+        next(err);
+    }
+}
+
 module.exports = {
     getMessages,
+    deleteMessage,
 }
